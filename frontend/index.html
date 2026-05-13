@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dota 2 Portal | Review System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="bg-layer"></div>
+    <div class="glow-point p1"></div>
+    <div class="glow-point p2"></div>
+
+    <nav class="fixed-nav">
+        <div class="logo">DOTA 2 <span class="portal-text">PORTAL</span></div>
+        <ul class="nav-links">
+            <li><a href="#" onclick="navigateTo('home')" id="link-home" class="active">ГЛАВНАЯ</a></li>
+            <li><a href="#" onclick="navigateTo('heroes')" id="link-heroes">ГЕРОИ</a></li>
+            <li><a href="#" onclick="navigateTo('reviews')" id="link-reviews">ОТЗЫВЫ</a></li>
+        </ul>
+    </nav>
+
+    <section id="home-section" class="page">
+        <div class="home-container">
+            <div class="main-hero-content animate-fade-in">
+                <p class="top-subtitle"><span class="valve-word">VALVE</span> <span class="moba-red">&bull; MOBA &bull; ACTION RPG</span></p>
+                <h1>DOTA 2 — БИТВА ЗА<br><span class="accent-text">ДРЕВНИХ</span></h1>
+                <p class="bottom-description">
+                    Твой путеводитель по миру героев и мнений сообщества.
+                </p>
+
+                <div id="top-discussed-block" class="top-discussed-glass">
+                    <p class="top-label">САМЫЕ ОБСУЖДАЕМЫЕ ГЕРОИ СЕЙЧАС:</p>
+                    <div id="top-list" class="top-list">
+                        <span class="no-reviews">Стань первым, кто оставит отзыв!</span>
+                    </div>
+                </div>
+
+                <div class="hero-buttons">
+                    <button class="home-btn primary-glow" onclick="navigateTo('heroes')">ВЫБРАТЬ ГЕРОЯ</button>
+                    <button class="home-btn secondary-outline" onclick="window.open('https://www.dota2.com/', '_blank')">ОФИЦИАЛЬНЫЙ САЙТ</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="heroes-section" class="page hidden">
+        <div class="section-content">
+            <div class="content-header">
+                <h2 class="section-title">СПИСОК ГЕРОЕВ</h2>
+                <div class="controls-grid">
+                    <div class="search-box">
+                        <input type="text" id="hero-search" placeholder="Поиск по имени..." oninput="applyAllFilters()">
+                    </div>
+                    <div class="filter-box">
+                        <select id="attribute-filter" onchange="applyAllFilters()">
+                            <option value="all">ВСЕ АТРИБУТЫ</option>
+                            <optgroup label="ТИП АТАКИ">
+                                <option value="attack_type:melee">Ближний бой</option>
+                                <option value="attack_type:ranged">Дальний бой</option>
+                            </optgroup>
+                            <optgroup label="СЛОЖНОСТЬ">
+                                <option value="difficulty:Easy">Easy</option>
+                                <option value="difficulty:Medium">Medium</option>
+                                <option value="difficulty:Hard">Hard</option>
+                            </optgroup>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="table-glass animate-slide-up">
+                <div class="heroes-grid-header">
+                    <div class="grid-col">ГЕРОЙ</div>
+                    <div class="grid-col">АТАКА</div>
+                    <div class="grid-col">РОЛЬ</div>
+                    <div class="grid-col">СЛОЖНОСТЬ</div>
+                    <div class="grid-col">РЕЙТИНГ</div>
+                    <div class="grid-col action-col">ДЕЙСТВИЕ</div>
+                </div>
+                <div id="heroes-list"></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="reviews-section" class="page hidden">
+        <div class="section-content">
+            <h2 class="section-title">ОТЗЫВЫ ИГРОКОВ</h2>
+            <div id="all-reviews-container" class="reviews-feed animate-fade-in"></div>
+        </div>
+    </section>
+
+    <section id="review-form-section" class="page hidden">
+        <div class="section-content">
+            <div class="form-wrapper animate-fade-in">
+                <div class="form-card-glass">
+                    <h2 id="review-title">НАПИСАТЬ ОТЗЫВ</h2>
+                    <div class="form-group">
+                        <label>ВАШ ПСЕВДОНИМ</label>
+                        <input type="text" id="rev-username" placeholder="Введите имя...">
+                    </div>
+                    <div class="form-group">
+                        <label>ВАША ОЦЕНКА</label>
+                        <div class="stars" id="star-rating">
+                            <span onclick="setRating(1)">★</span>
+                            <span onclick="setRating(2)">★</span>
+                            <span onclick="setRating(3)">★</span>
+                            <span onclick="setRating(4)">★</span>
+                            <span onclick="setRating(5)">★</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>ВАШЕ МНЕНИЕ</label>
+                        <textarea id="rev-text" rows="5" placeholder="Поделитесь впечатлениями о герое..."></textarea>
+                    </div>
+                    <div class="form-actions">
+                        <button class="submit-btn" onclick="submitReview()">ОТПРАВИТЬ В ТАВЕРНУ</button>
+                        <button class="cancel-btn" onclick="navigateTo('heroes')">ОТМЕНА</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>
